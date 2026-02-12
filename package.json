@@ -1,0 +1,30 @@
+{
+  "name": "subscriber-api-devops",
+  "version": "1.0.0",
+  "description": "This is a **learning-by-building** project focused on designing and operating a production-grade CI/CD pipeline and cloud infrastructure. While the core API application is intentionally simple, it serves as the vehicle for mastering complex delivery and operational workflows.",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Speedylo/subscriber-api-devops.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Speedylo/subscriber-api-devops/issues"
+  },
+  "homepage": "https://github.com/Speedylo/subscriber-api-devops#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "dotenv": "^17.2.4",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0",
+    "nodemon": "^3.1.11"
+  }
+}
