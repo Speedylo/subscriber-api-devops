@@ -2,11 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Subscriber = require('../models/subscriber')
 
-// Health check
-router.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok'})
-})
-
 // Getting all
 router.get('/', async (req, res) => {
     try {
