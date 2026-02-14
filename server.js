@@ -13,5 +13,8 @@ app.use(express.json())
 const subscribersRouter = require('./routes/subscribers.js')
 app.use('/subscribers', subscribersRouter)
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 app.listen(3000, () => console.log("Server Started"))
