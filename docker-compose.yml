@@ -1,0 +1,22 @@
+services:
+  api:
+    build: .
+    container_name: subscriber-api
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+  
+  mongo:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    
+volumes:
+  mongo-data:
