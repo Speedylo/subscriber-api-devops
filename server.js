@@ -1,20 +1,7 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
+const app = require('./app')
 
-mongoose.connect(process.env.DATABASE_URL)
-const db = mongoose.connection
-db.on("error", (error) => console.error(error))
-db.once("open", () => console.log("Connected to Database"))
+const PORT = process.env.PORT || 8080;
 
-app.use(express.json())
-
-const subscribersRouter = require('./routes/subscribers.js')
-app.use('/subscribers', subscribersRouter)
-
-app.get("/health", (req, res) => {
-  res.status(200).json({ status: 'ok' });
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 });
-
-app.listen(3000, () => console.log("Server Started"))
