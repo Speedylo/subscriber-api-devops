@@ -4,7 +4,8 @@
   "description": "This is a **learning-by-building** project focused on designing and operating a production-grade CI/CD pipeline and cloud infrastructure. While the core API application is intentionally simple, it serves as the vehicle for mastering complex delivery and operational workflows.",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "test": "jest --coverage",
+    "devStart": "nodemon server.js app.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "eslint": "^10.0.0",
     "globals": "^17.3.0",
     "jest": "^30.2.0",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "supertest": "^7.2.2"
   }
 }
