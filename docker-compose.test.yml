@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    env_file:
+      - .env.test
+    depends_on:
+      - mongo-test
+
+  mongo-test:
+    image: mongodb/mongodb-community-server:latest
