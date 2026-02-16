@@ -4,7 +4,13 @@ services:
     env_file:
       - .env.test
     depends_on:
-      - mongo-test
+      mongo-test:
+        condition: service_healthy
 
   mongo-test:
     image: mongodb/mongodb-community-server:latest
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
