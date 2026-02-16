@@ -8,9 +8,9 @@ services:
         condition: service_healthy
 
   mongo-test:
-    image: mongodb/mongodb-community-server:latest
+    image: mongo:5
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping') || exit 1"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 12
