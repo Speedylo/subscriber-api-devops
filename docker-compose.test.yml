@@ -1,4 +1,12 @@
 services:
+  mongo-test:
+    image: mongo:latest
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\")' || exit 1"]      
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
   api:
     build: .
     env_file:
@@ -6,11 +14,3 @@ services:
     depends_on:
       mongo-test:
         condition: service_healthy
-
-  mongo-test:
-    image: mongo:5
-    healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping') || exit 1"]
-      interval: 5s
-      timeout: 5s
-      retries: 12
