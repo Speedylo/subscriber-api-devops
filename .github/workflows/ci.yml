@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push: 
+    branches: [ "dev", "main" ]
+  pull_request:
+    branches: [ "dev", "main" ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Build and start test environment
+        run: docker compose -f docker-compose.test.yml up --build -d
+
+      - name: Run tests
+        run: docker compose -f docker-compose.test.yml run --rm api npm test
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Security audit
+        run: npm audit --audit-level=high
+
+      - name: Shutdown test environment
+        if: always()
+        run: docker compose -f docker-compose.test.yml down -v
+        

@@ -1,0 +1,32 @@
+services:
+  mongo-dev:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongo-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-dev-data:/data/db
+
+  api:
+    build: .
+    container_name: subscriber-api-dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.development
+    depends_on:
+      - mongo-dev
+
+  mongo-test:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongo-test
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-test-data:/data/db
+    
+volumes:
+  mongo-dev-data:
+  mongo-test-data:
