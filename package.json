@@ -9,6 +9,16 @@
 		"lint": "eslint . --max-warnings=0",
 		"test": "cross-env NODE_ENV=test jest --coverage"
 	},
+	"jest": {
+		"coverageThreshold": {
+			"global": {
+				"statements": 85,
+				"branches": 60,
+				"functions": 90,
+				"lines": 85
+			}
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Speedylo/subscriber-api-devops.git"
