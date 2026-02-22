@@ -35,7 +35,6 @@ router.post('/', async (req, res) => {
 router.patch('/:id', getSubscriber, async (req, res) => {
 	if (req.body.name !== null) {
 		res.subscriber.name = req.body.name;
-
 	}
 	if (req.body.subscribedToChannel !== null) {
 		res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
