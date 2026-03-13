@@ -4,12 +4,16 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  RESOURCE_GROUP: devops
+  CONTAINER_APP_NAME: subscriberapi
+
 permissions:
   contents: read
   packages: write
 
 jobs:
-  build-and-push:
+  build-push-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,3 +38,17 @@ jobs:
         run: |
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:$IMAGE_TAG
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          imageToDeploy: $IMAGE_NAME:$IMAGE_TAG
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+          containerAppName: ${{ env.CONTAINER_APP_NAME }}
+          environmentVariables: |
+            DATABASE_URL=secretref:database-url
