@@ -6,6 +6,7 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+
 [![CI Pipeline](https://github.com/Speedylo/subscriber-api-devops/actions/workflows/ci.yml/badge.svg)](https://github.com/Speedylo/subscriber-api-devops/actions)
 [![CD Pipeline](https://github.com/Speedylo/subscriber-api-devops/actions/workflows/cd.yml/badge.svg)](https://github.com/Speedylo/subscriber-api-devops/actions)
 
