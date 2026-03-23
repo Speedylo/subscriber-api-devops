@@ -9,8 +9,10 @@ services:
 
   api:
     build: .
-    env_file:
-      - .env.test
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=mongodb://mongo-test:27017/subscribers_test
+      - PORT=3001
     depends_on:
       mongo-test:
         condition: service_healthy
